@@ -1,0 +1,40 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="createTable-productApi" author="adam.wadowski">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PRODUCT"/>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="PRODUCT_SEQ" startValue="1" incrementBy="1" minValue="1" maxValue="999999999" cycle="false"/>
+
+        <createTable tableName="PRODUCT">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="typ" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ingredients" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pictureId" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
