@@ -12,13 +12,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/produkty")
 public class ProductController {
 
 
     private final ProductService productService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<ProductApi> getAllProducts() {
         return productService.getAllProducts();
     }
