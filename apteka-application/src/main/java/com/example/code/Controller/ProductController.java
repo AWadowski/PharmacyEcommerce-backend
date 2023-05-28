@@ -4,14 +4,13 @@ import com.example.code.Api.ProductApi;
 import com.example.code.Api.TypProduktu;
 import com.example.code.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/produkty")
 public class ProductController {
