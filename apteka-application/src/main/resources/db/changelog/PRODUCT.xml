@@ -31,7 +31,7 @@
             <column name="ingredients" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pictureId" type="NUMBER">
+            <column name="picture_id" type="NUMBER">
                 <constraints nullable="false"/>
             </column>
         </createTable>
