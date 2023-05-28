@@ -15,8 +15,6 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    @Query("select id, name, price, description, typ, ingredients, pictureId from PRODUCT")
-    List<Product> findAll();
 
     @Query("select id, name, price, description, typ, ingredients, pictureId from PRODUCT where ID = :id")
     Optional<Product> findByid(Long id);

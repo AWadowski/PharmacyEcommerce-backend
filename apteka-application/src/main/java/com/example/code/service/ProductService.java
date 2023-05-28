@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author adam.wadowski
@@ -24,9 +25,10 @@ public class ProductService {
 
 
     public List<ProductApi> getAllProducts() {
-        return productRepository.findAll().stream()
+        List<Product> products = (List<Product>) productRepository.findAll();
+        return products.stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public ProductApi getProductById(Long id) {
