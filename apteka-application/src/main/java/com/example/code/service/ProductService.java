@@ -76,8 +76,8 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductApi> findProductsByTypProduktu(TypProduktu typProduktu) {
-        return productRepository.findByTypProduktu(typProduktu.name()).stream()
+    public List<ProductApi> findProductsByTypProduktu(String typProduktu) {
+        return productRepository.findByTypProduktu(typProduktu).stream()
                 .map(productConverter::fromEntity)
                 .collect(Collectors.toList());
     }
