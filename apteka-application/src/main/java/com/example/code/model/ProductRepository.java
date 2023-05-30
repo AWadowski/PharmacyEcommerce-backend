@@ -35,7 +35,7 @@ public interface ProductRepository extends CrudRepository<Product, Long>, JpaRep
     @Query("SELECT id, name, price, description, typ, ingredients, picture_id FROM PRODUCT WHERE name LIKE %:name%")
     List<Product> findProductsByNameContaining(String name);
 
-    @Query("SELECT id, name, price, description, typ, ingredients, picture_id FROM PRODUCT WHERE typ = :typProduktu")
+    @Query("SELECT p FROM PRODUCT p WHERE p.typ = :typProduktu")
     List<Product> findByTypProduktu(String typProduktu);
 
 }
