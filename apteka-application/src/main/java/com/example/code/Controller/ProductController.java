@@ -63,8 +63,8 @@ public class ProductController {
         return productService.findProductsByNameContaining(name);
     }
 
-    @GetMapping("/typProduktu")
-    public List<ProductApi> getProductsByTypProduktu(@RequestParam TypProduktu typProduktu) {
+    @GetMapping("/typProduktu/{typProduktu}")
+    public List<ProductApi> getProductsByTypProduktu(@RequestBody TypProduktu typProduktu) {
         return productService.findProductsByTypProduktu(typProduktu);
     }
 
