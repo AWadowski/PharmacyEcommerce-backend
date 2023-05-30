@@ -1,10 +1,11 @@
 package com.example.code.Api;
 
 import com.example.code.model.Product;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Converter;
+import java.lang.annotation.Annotation;
 
 /**
  * @author adam.wadowski
@@ -12,8 +13,7 @@ import javax.persistence.Converter;
  */
 
 @Component
-@Converter(autoApply = true)
-public class ProductConverter extends Jsr310JpaConverters {
+public class ProductConverter implements Converter<Product, ProductApi> {
 
     public ProductApi fromEntity(Product entity){
         return ProductApi.builder()
@@ -46,5 +46,17 @@ public class ProductConverter extends Jsr310JpaConverters {
             }
         }
         throw new IllegalArgumentException("Invalid display name: " + displayName);
+    }
+    @Override
+    public ProductApi convert(Product source) {
+        return ProductApi.builder()
+                .id(source.getId())
+                .name(source.getName())
+                .price(source.getPrice())
+                .description(source.getDescription())
+                .typ(fromDisplayName(source.getTyp()))
+                .ingredients(source.getIngredients())
+                .pictureId(source.getPicture_id())
+                .build();
     }
 }

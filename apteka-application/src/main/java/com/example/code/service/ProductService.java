@@ -27,12 +27,12 @@ public class ProductService {
     public List<ProductApi> getAllProducts() {
         List<Product> products = (List<Product>) productRepository.findAll();
         return products.stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
     public ProductApi getProductById(Long id) {
-        return productConverter.fromEntity(productRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Product with id: " + id + " not found")));
+        return productConverter.convert(productRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Product with id: " + id + " not found")));
 
     }
 
@@ -53,32 +53,32 @@ public class ProductService {
 
     public List<ProductApi> findProductsByDescriptionNotNull() {
         return productRepository.findProductsByDescriptionNotNull().stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByPriceRange(double minPrice, double maxPrice) {
         return productRepository.findProductsByPriceRange(minPrice, maxPrice).stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
 
     public List<ProductApi> findProductsByPriceGreaterThanOrEqual(double price) {
         return productRepository.findProductsByPriceGreaterThanOrEqual(price).stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByNameContaining(String name) {
         return productRepository.findProductsByNameContaining(name).stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByTypProduktu(String typProduktu) {
         return productRepository.findByTypProduktu(typProduktu).stream()
-                .map(productConverter::fromEntity)
+                .map(productConverter::convert)
                 .collect(Collectors.toList());
     }
 
