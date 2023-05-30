@@ -30,7 +30,7 @@ public class Product {
     private String description;
     private String typ;
     private String ingredients;
-    private Long pictureId;
+    private Long picture_id;
 
     public void setId(Long id) {
         this.id = id;

@@ -30,7 +30,7 @@ public class CSVReaderService {
             while ((nextLine = reader.readNext()) != null) {
                     log.info("Odczytano linię: {}", nextLine);
                     Product product = new Product();
-                    product.setPictureId(Long.parseLong(nextLine[0]));
+                    product.setPicture_id(Long.parseLong(nextLine[0]));
                     product.setName(nextLine[1]);
                     product.setPrice(generateRandomDouble());
                     product.setDescription(nextLine[2]);

@@ -20,7 +20,7 @@ public class ProductConverter extends Jsr310JpaConverters {
                 .description(entity.getDescription())
                 .typ(fromDisplayName(entity.getTyp()))
                 .ingredients(entity.getIngredients())
-                .pictureId(entity.getPictureId())
+                .pictureId(entity.getPicture_id())
                 .build();
     }
 
@@ -32,7 +32,7 @@ public class ProductConverter extends Jsr310JpaConverters {
                 .description(object.getDescription())
                 .typ(object.getTyp().name())
                 .ingredients(object.getIngredients())
-                .pictureId(object.getPictureId())
+                .picture_id(object.getPictureId())
                 .build();
     }
 
