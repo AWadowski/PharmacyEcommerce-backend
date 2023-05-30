@@ -54,31 +54,35 @@ public class ProductService {
     public List<ProductApi> findProductsByDescriptionNotNull() {
         return productRepository.findProductsByDescriptionNotNull().stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByPriceRange(double minPrice, double maxPrice) {
         return productRepository.findProductsByPriceRange(minPrice, maxPrice).stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
     }
 
 
     public List<ProductApi> findProductsByPriceGreaterThanOrEqual(double price) {
         return productRepository.findProductsByPriceGreaterThanOrEqual(price).stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByNameContaining(String name) {
         return productRepository.findProductsByNameContaining(name).stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<ProductApi> findProductsByTypProduktu(TypProduktu typProduktu) {
         return productRepository.findByTypProduktu(typProduktu.name()).stream()
                 .map(productConverter::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
+    }
+
+    public void saveProducts(List<Product> products) {
+        productRepository.saveAll(products);
     }
 }

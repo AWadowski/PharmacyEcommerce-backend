@@ -18,7 +18,7 @@ public class ProductConverter extends Jsr310JpaConverters {
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .description(entity.getDescription())
-                .typ(TypProduktu.valueOf(entity.getTyp()))
+                .typ(fromDisplayName(entity.getTyp()))
                 .ingredients(entity.getIngredients())
                 .pictureId(entity.getPictureId())
                 .build();
@@ -34,5 +34,14 @@ public class ProductConverter extends Jsr310JpaConverters {
                 .ingredients(object.getIngredients())
                 .pictureId(object.getPictureId())
                 .build();
+    }
+
+    public TypProduktu fromDisplayName(String displayName) {
+        for (TypProduktu typProduktu : TypProduktu.values()) {
+            if (typProduktu.getDisplayName().equals(displayName)) {
+                return typProduktu;
+            }
+        }
+        throw new IllegalArgumentException("Invalid display name: " + displayName);
     }
 }
