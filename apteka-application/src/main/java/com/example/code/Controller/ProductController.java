@@ -64,7 +64,7 @@ public class ProductController {
     }
 
     @GetMapping("/typProduktu/{typProduktu}")
-    public List<ProductApi> getProductsByTypProduktu(@PathVariable String typProduktu) {
+    public List<ProductApi> getProductsByTypProduktu(@RequestBody TypProduktu typProduktu) {
         return productService.findProductsByTypProduktu(typProduktu);
     }
 
