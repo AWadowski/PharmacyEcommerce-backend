@@ -32,11 +32,4 @@ public class Product {
     private String ingredients;
     private Long picture_id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

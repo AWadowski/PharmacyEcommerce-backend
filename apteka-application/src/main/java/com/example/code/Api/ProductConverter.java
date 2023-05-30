@@ -4,12 +4,15 @@ import com.example.code.model.Product;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Converter;
+
 /**
  * @author adam.wadowski
  * @since 24.05.2023
  */
 
 @Component
+@Converter(autoApply = true)
 public class ProductConverter extends Jsr310JpaConverters {
 
     public ProductApi fromEntity(Product entity){
