@@ -6,9 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum TypProduktu {
-    LEK("Lek"),
-    WITAMINA("Witamina"),
-    SUPLEMENT_DIETETYCZNY("Suplement dietetyczny");
+    HEALTHWELLNESS("Zdrowie i uroda"),
+    VITAMINS("Witaminy"),
+    SUPPLEMENTS("Suplementy dietetyczne"),
+    BEAUTY("Pielęgnacja ciała"),
+    PHARMACY("Apteka");
 
     private final String displayName;
 }

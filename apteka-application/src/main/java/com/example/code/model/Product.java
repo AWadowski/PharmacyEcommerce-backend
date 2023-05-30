@@ -22,7 +22,7 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    @SequenceGenerator(name = "PRODUCT_ID_GENERATOR", sequenceName = "PRODUCT_ID", allocationSize = 1)
+    @SequenceGenerator(name = "PRODUCT_ID_GENERATOR", sequenceName = "PRODUCT_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_ID_GENERATOR")
     private Long id;
     private String name;
