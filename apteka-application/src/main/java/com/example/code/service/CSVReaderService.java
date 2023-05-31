@@ -1,7 +1,9 @@
 package com.example.code.service;
+import com.example.code.Api.ProductApi;
+import com.example.code.Api.ProductConverter;
 import com.example.code.Api.TypProduktu;
 import com.example.code.model.Product;
-import com.example.code.model.ProductRepository;
+//import com.example.code.model.ProductRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +21,15 @@ import java.util.Random;
 @Slf4j
 public class CSVReaderService {
 
-    private final ProductRepository productRepository;
+//    private final ProductRepository productRepository;
+    private final ProductConverter productConverter;
 
-    public void readCSV(String filePath) {
+    public List<ProductApi> readCSV(String filePath) {
         log.info("Rozpoczęto odczyt pliku CSV");
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             String[] nextLine;
             Long pictureId = 0L;
-
+            List<ProductApi> lista = new ArrayList<>();
             while ((nextLine = reader.readNext()) != null) {
                     log.info("Odczytano linię: {}", nextLine);
                     Product product = new Product();
@@ -36,16 +39,20 @@ public class CSVReaderService {
                     product.setDescription(nextLine[2]);
                     product.setTyp(getRandomTypProduktu().getDisplayName());
                     product.setIngredients(nextLine[3]);
-                    productRepository.save(product);
+
+                    lista.add(productConverter.fromEntity(product));
+//                    productRepository.save(product);
                     pictureId++;
                     log.info("Zapisano produkt: {}", product);
                 }
+            return lista;
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
         }
+        return new ArrayList<>();
     }
 
     private static TypProduktu getRandomTypProduktu() {
