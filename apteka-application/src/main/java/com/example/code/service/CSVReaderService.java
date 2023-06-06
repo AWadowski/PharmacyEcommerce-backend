@@ -25,25 +25,26 @@ public class CSVReaderService {
     private final ProductConverter productConverter;
 
     public List<ProductApi> readCSV(String filePath) {
-        log.info("Rozpoczęto odczyt pliku CSV");
+        //log.info("Rozpoczęto odczyt pliku CSV");
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             String[] nextLine;
             Long pictureId = 0L;
             List<ProductApi> lista = new ArrayList<>();
             while ((nextLine = reader.readNext()) != null) {
-                    log.info("Odczytano linię: {}", nextLine);
-                    Product product = new Product();
-                    product.setPicture_id(Long.parseLong(nextLine[0]));
+                    //log.info("Odczytano linię: {}", nextLine);
+                    ProductApi product = new ProductApi();
+                    product.setId(Long.parseLong(nextLine[0]));
+                    product.setPictureId(product.getId());
                     product.setName(nextLine[1]);
                     product.setPrice(generateRandomDouble());
                     product.setDescription(nextLine[2]);
-                    product.setTyp(getRandomTypProduktu().getDisplayName());
+                    product.setTyp(getRandomTypProduktu());
                     product.setIngredients(nextLine[3]);
 
-                    lista.add(productConverter.fromEntity(product));
+                    lista.add(product);
 //                    productRepository.save(product);
                     pictureId++;
-                    log.info("Zapisano produkt: {}", product);
+                    //log.info("Zapisano produkt: {}", product);
                 }
             return lista;
 

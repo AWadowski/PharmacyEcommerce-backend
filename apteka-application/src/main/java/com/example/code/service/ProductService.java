@@ -6,6 +6,7 @@ import com.example.code.Api.TypProduktu;
 import com.example.code.model.Product;
 //import com.example.code.model.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductService {
 
 //    private final ProductRepository productRepository;
@@ -87,7 +89,8 @@ public class ProductService {
 //        return productRepository.findByTypProduktu(typProduktu).stream()
 //                .map(productConverter::convert)
 //                .collect(Collectors.toList());
-        return csvReaderService.readCSV("bazalekow.csv").stream().filter(product -> product.getTyp().equals(TypProduktu.valueOf(typProduktu))).collect(Collectors.toList());
+        log.info("typProduktu: " + typProduktu);
+        return csvReaderService.readCSV("bazalekow.csv").stream().filter(product -> product.getTyp().getDisplayName().equals(typProduktu)).collect(Collectors.toList());
     }
 
     public void saveProducts(List<Product> products) {
